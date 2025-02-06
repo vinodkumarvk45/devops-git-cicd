@@ -1,0 +1,34 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Docker image
+        run: docker build -t simple-express-api .
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.vk1sg20cs089VK }}" | docker login -u "${{ secrets.vinodkumarhegde }}" --password-stdin
+
+      - name: Push Docker image
+        run: docker tag simple-express-api vinodkumarvk45/simple-express-api:latest && docker push vinodkumarvk45/simple-express-api:latest
