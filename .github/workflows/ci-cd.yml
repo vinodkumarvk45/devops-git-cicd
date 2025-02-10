@@ -28,7 +28,7 @@ jobs:
         run: docker build -t simple-express-api .
 
       - name: Login to Docker Hub
-        run: echo "${{ secrets.vk1sg20cs089VK }}" | docker login -u "${{ secrets.vinodkumarhegde }}" --password-stdin
+        run: echo "${{ secrets.vk1sg20cs089VQWERK }}" | docker login -u "${{ secrets.vinodkumarhegde }}" --password-stdin
 
       - name: Push Docker image
         run: docker tag simple-express-api vinodkumarhegde/simple-express-api:latest && docker push vinodkumarhegde/simple-express-api:latest
